@@ -16,9 +16,6 @@ from clef_api import API_KEY
 TO DO
 afficher le dernier train prévu d'une station donnée
 afficher une autre station en touchant l'écran
-corriger l'affichage des infos qui reste un temps infini
-faire un rsync ou autre entre la raspi et le pc.
-mettre en place github
 """
 
 
