@@ -1,0 +1,1 @@
+{'GOTA': '#f1c40f', 'BOBA': '#2ecc71', 'ELBA': '#8e44ad', 'DEBO': '#f39c12', 'SARA': '#fd79a8', 'LARA': '#00ffea', 'ZARA': '#f1c40f', 'SICK': '#ffeaa7', 'DEBA': '#1abc9c', 'KNAK': '#badc58', 'BALI': '#fff200', 'ORET': '#ff7675', 'NARA': '#e67e22', 'NICO': '#ff9ff3', 'JICK': '#fab1a0'}

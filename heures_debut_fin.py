@@ -1,0 +1,2 @@
+PAUSE_DEBUT = "23h59"
+PAUSE_FIN   = "04h00"

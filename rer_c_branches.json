@@ -1,0 +1,714 @@
+{
+  "Pontoise - Massy Palaiseau": [
+    {
+      "order": 0,
+      "list_name": "Pontoise",
+      "code": 44411,
+      "csv_name": "Pontoise",
+      "csv_town": "Pontoise",
+      "code_zone_arret": 66816
+    },
+    {
+      "order": 1,
+      "list_name": "Saint-Ouen-l'Aumône",
+      "code": 47599,
+      "csv_name": "Saint-Ouen-l'Aumône",
+      "csv_town": "Saint-Ouen-l'Aumône",
+      "code_zone_arret": 66803
+    },
+    {
+      "order": 2,
+      "list_name": "Saint-Ouen-l'Aumône Liesse",
+      "code": 43150,
+      "csv_name": "Saint-Ouen-l'Aumône Liesse",
+      "csv_town": "Saint-Ouen-l'Aumône",
+      "code_zone_arret": 66659
+    },
+    {
+      "order": 3,
+      "list_name": "Pierrelaye",
+      "code": 43180,
+      "csv_name": "Pierrelaye",
+      "csv_town": "Pierrelaye",
+      "code_zone_arret": 66491
+    },
+    {
+      "order": 4,
+      "list_name": "Montigny - Beauchamp",
+      "code": 43166,
+      "csv_name": "Montigny - Beauchamp",
+      "csv_town": "Pierrelaye",
+      "code_zone_arret": 66335
+    },
+    {
+      "order": 5,
+      "list_name": "Franconville - Le Plessis-Bouchard",
+      "code": 43126,
+      "csv_name": "Franconville - Le Plessis-Bouchard",
+      "csv_town": "Franconville",
+      "code_zone_arret": 66005
+    },
+    {
+      "order": 6,
+      "list_name": "Cernay",
+      "code": 43105,
+      "csv_name": "Cernay",
+      "csv_town": "Ermont",
+      "code_zone_arret": 65752
+    },
+    {
+      "order": 7,
+      "list_name": "Ermont - Eaubonne",
+      "code": 47898,
+      "csv_name": "Ermont - Eaubonne",
+      "csv_town": "Ermont",
+      "code_zone_arret": 65669
+    },
+    {
+      "order": 8,
+      "list_name": "Saint-Gratien",
+      "code": 43201,
+      "csv_name": "Saint-Gratien",
+      "csv_town": "Saint-Gratien",
+      "code_zone_arret": 65305
+    },
+    {
+      "order": 9,
+      "list_name": "Épinay-sur-Seine",
+      "code": 43077,
+      "csv_name": "Épinay-sur-Seine",
+      "csv_town": "Épinay-sur-Seine",
+      "code_zone_arret": 72383
+    },
+    {
+      "order": 10,
+      "list_name": "Gennevilliers",
+      "code": 43130,
+      "csv_name": "Gennevilliers",
+      "csv_town": "Gennevilliers",
+      "code_zone_arret": 72303
+    },
+    {
+      "order": 11,
+      "list_name": "Les Grésillons",
+      "code": 43230,
+      "csv_name": "Les Grésillons",
+      "csv_town": "Gennevilliers",
+      "code_zone_arret": 72225
+    },
+    {
+      "order": 12,
+      "list_name": "Saint-Ouen",
+      "code": 43203,
+      "csv_name": "Saint-Ouen",
+      "csv_town": "Saint-Ouen",
+      "code_zone_arret": 72126
+    },
+    {
+      "order": 13,
+      "list_name": "Porte de Clichy",
+      "code": 44514,
+      "csv_name": "Porte de Clichy",
+      "csv_town": "Paris 17e",
+      "code_zone_arret": 71545
+    },
+    {
+      "order": 14,
+      "list_name": "Péreire Levallois",
+      "code": 44314,
+      "csv_name": "Péreire Levallois",
+      "csv_town": "Paris 17e",
+      "code_zone_arret": 71453
+    },
+    {
+      "order": 15,
+      "list_name": "Neuilly - Porte Maillot",
+      "code": 415093,
+      "csv_name": "Neuilly - Porte Maillot",
+      "csv_town": "Paris 17e",
+      "code_zone_arret": 71379
+    },
+    {
+      "order": 16,
+      "list_name": "Avenue Foch",
+      "code": 45437,
+      "csv_name": "Avenue Foch",
+      "csv_town": "Paris 16e",
+      "code_zone_arret": 71321
+    },
+    {
+      "order": 17,
+      "list_name": "Avenue Henri Martin",
+      "code": 45447,
+      "csv_name": "Avenue Henri Martin",
+      "csv_town": "Paris 16e",
+      "code_zone_arret": 71286
+    },
+    {
+      "order": 18,
+      "list_name": "Boulainvilliers",
+      "code": 45453,
+      "csv_name": "Boulainvilliers",
+      "csv_town": "Paris 16e",
+      "code_zone_arret": 71229
+    },
+    {
+      "order": 19,
+      "list_name": "Avenue du Président Kennedy Maison de Radio France",
+      "code": 45419,
+      "csv_name": "Avenue du Président Kennedy Maison de Radio France",
+      "csv_town": "Paris 16e",
+      "code_zone_arret": 71212
+    },
+    {
+      "order": 20,
+      "list_name": "Champ de Mars Tour Eiffel",
+      "code": 58757,
+      "csv_name": "Champ de Mars Tour Eiffel",
+      "csv_town": "Paris 15e",
+      "code_zone_arret": 73844
+    },
+    {
+      "order": 21,
+      "list_name": "Pont de l'Alma",
+      "code": 415091,
+      "csv_name": "Pont de l'Alma",
+      "csv_town": "Paris 7e",
+      "code_zone_arret": 492980
+    },
+    {
+      "order": 22,
+      "list_name": "Invalides",
+      "code": 470540,
+      "csv_name": "Invalides",
+      "csv_town": "Paris 7e",
+      "code_zone_arret": 71274
+    },
+    {
+      "order": 23,
+      "list_name": "Musée d'Orsay",
+      "code": 45705,
+      "csv_name": "Musée d'Orsay",
+      "csv_town": "Paris 7e",
+      "code_zone_arret": 71269
+    },
+    {
+      "order": 24,
+      "list_name": "Saint-Michel Notre-Dame",
+      "code": 44877,
+      "csv_name": "Saint-Michel Notre-Dame",
+      "csv_town": "Paris 5e",
+      "code_zone_arret": 73620
+    },
+    {
+      "order": 25,
+      "list_name": "Gare d'Austerlitz",
+      "code": 43072,
+      "csv_name": "Gare d'Austerlitz",
+      "csv_town": "Paris 13e",
+      "code_zone_arret": 71135
+    },
+    {
+      "order": 26,
+      "list_name": "Bibliothèque François Mitterrand",
+      "code": 45301,
+      "csv_name": "Bibliothèque François Mitterrand",
+      "csv_town": "Paris 13e",
+      "code_zone_arret": 71572
+    },
+    {
+      "order": 27,
+      "list_name": "Ivry-sur-Seine",
+      "code": 46366,
+      "csv_name": "Ivry-sur-Seine",
+      "csv_town": "Ivry-sur-Seine",
+      "code_zone_arret": 424396
+    },
+    {
+      "order": 28,
+      "list_name": "Vitry-sur-Seine",
+      "code": 46375,
+      "csv_name": "Vitry-sur-Seine",
+      "csv_town": "Vitry-sur-Seine",
+      "code_zone_arret": 70313
+    },
+    {
+      "order": 29,
+      "list_name": "Les Ardoines",
+      "code": 43227,
+      "csv_name": "Les Ardoines",
+      "csv_town": "Vitry-sur-Seine",
+      "code_zone_arret": 70064
+    },
+    {
+      "order": 30,
+      "list_name": "Choisy-le-Roi",
+      "code": 43110,
+      "csv_name": "Choisy-le-Roi",
+      "csv_town": "Choisy-le-Roi",
+      "code_zone_arret": 69852
+    },
+    {
+      "order": 31,
+      "list_name": "Les Saules",
+      "code": 46298,
+      "csv_name": "Les Saules",
+      "csv_town": "Orly",
+      "code_zone_arret": 69662
+    },
+    {
+      "order": 32,
+      "list_name": "Orly Ville",
+      "code": 46299,
+      "csv_name": "Orly Ville",
+      "csv_town": "Orly",
+      "code_zone_arret": 69639
+    },
+    {
+      "order": 33,
+      "list_name": "Pont de Rungis Aéroport d'Orly",
+      "code": 47907,
+      "csv_name": "Pont de Rungis Aéroport d'Orly",
+      "csv_town": "Thiais",
+      "code_zone_arret": 69677
+    },
+    {
+      "order": 34,
+      "list_name": "Rungis la Fraternelle",
+      "code": 44787,
+      "csv_name": "Rungis la Fraternelle",
+      "csv_town": "Rungis",
+      "code_zone_arret": 69633
+    },
+    {
+      "order": 35,
+      "list_name": "Chemin d'Antony",
+      "code": 46035,
+      "csv_name": "Chemin d'Antony",
+      "csv_town": "Antony",
+      "code_zone_arret": 69682
+    },
+    {
+      "order": 36,
+      "list_name": "Massy - Verrières",
+      "code": 47940,
+      "csv_name": "Massy - Verrières",
+      "csv_town": "Massy",
+      "code_zone_arret": 63320
+    },
+    {
+      "order": 37,
+      "list_name": "Massy - Palaiseau",
+      "code": 58774,
+      "csv_name": "Massy - Palaiseau",
+      "csv_town": "Massy",
+      "code_zone_arret": 63244
+    }
+  ],
+  "Versailles Château Rive Gauche - Viroflay Rive Gauche": [
+    {
+      "order": 0,
+      "list_name": "Versailles Château Rive Gauche",
+      "code": 43220,
+      "csv_name": "Versailles Château Rive Gauche",
+      "csv_town": "Versailles",
+      "code_zone_arret": 73721
+    },
+    {
+      "order": 1,
+      "list_name": "Porchefontaine",
+      "code": 43183,
+      "csv_name": "Porchefontaine",
+      "csv_town": "Versailles",
+      "code_zone_arret": 63886
+    },
+    {
+      "order": 2,
+      "list_name": "Viroflay Rive Gauche",
+      "code": 462388,
+      "csv_name": "Viroflay Rive Gauche",
+      "csv_town": "Viroflay",
+      "code_zone_arret": 63923
+    }
+  ],
+  "Saint Quentin en Yvelines - Saint Martin d’Étampes": [
+    {
+      "order": 0,
+      "list_name": "Saint-Quentin en Yvelines - Montigny-le-Bretonneux",
+      "code": 461504,
+      "csv_name": "Saint-Quentin en Yvelines - Montigny-le-Bretonneux",
+      "csv_town": "Montigny-le-Bretonneux",
+      "code_zone_arret": 63812
+    },
+    {
+      "order": 1,
+      "list_name": "Saint-Cyr",
+      "code": 46990,
+      "csv_name": "Saint-Cyr",
+      "csv_town": "Saint-Cyr-l'École",
+      "code_zone_arret": 73731
+    },
+    {
+      "order": 2,
+      "list_name": "Versailles Chantiers",
+      "code": 43219,
+      "csv_name": "Versailles Chantiers",
+      "csv_town": "Versailles",
+      "code_zone_arret": 63880
+    },
+    {
+      "order": 3,
+      "list_name": "Viroflay Rive Gauche",
+      "code": 462388,
+      "csv_name": "Viroflay Rive Gauche",
+      "csv_town": "Viroflay",
+      "code_zone_arret": 63923
+    },
+    {
+      "order": 4,
+      "list_name": "Chaville - Vélizy",
+      "code": 47883,
+      "csv_name": "Chaville - Vélizy",
+      "csv_town": "Viroflay",
+      "code_zone_arret": 69487
+    },
+    {
+      "order": 5,
+      "list_name": "Meudon Val Fleury",
+      "code": 43163,
+      "csv_name": "Meudon Val Fleury",
+      "csv_town": "Meudon",
+      "code_zone_arret": 70412
+    },
+    {
+      "order": 6,
+      "list_name": "Issy",
+      "code": 43084,
+      "csv_name": "Issy",
+      "csv_town": "Issy-les-Moulineaux",
+      "code_zone_arret": 70612
+    },
+    {
+      "order": 7,
+      "list_name": "Issy - Val de Seine",
+      "code": 462357,
+      "csv_name": "Issy - Val de Seine",
+      "csv_town": "Issy-les-Moulineaux",
+      "code_zone_arret": 71016
+    },
+    {
+      "order": 8,
+      "list_name": "Pont du Garigliano - Hôpital Européen G. Pompidou",
+      "code": 58798,
+      "csv_name": "Pont du Garigliano - Hôpital Européen G. Pompidou",
+      "csv_town": "Paris 15e",
+      "code_zone_arret": 74002
+    },
+    {
+      "order": 9,
+      "list_name": "Javel",
+      "code": 45346,
+      "csv_name": "Javel",
+      "csv_town": "Paris 15e",
+      "code_zone_arret": 71150
+    },
+    {
+      "order": 10,
+      "list_name": "Champ de Mars Tour Eiffel",
+      "code": 58757,
+      "csv_name": "Champ de Mars Tour Eiffel",
+      "csv_town": "Paris 15e",
+      "code_zone_arret": 73844
+    },
+    {
+      "order": 11,
+      "list_name": "Pont de l'Alma",
+      "code": 415091,
+      "csv_name": "Pont de l'Alma",
+      "csv_town": "Paris 7e",
+      "code_zone_arret": 492980
+    },
+    {
+      "order": 12,
+      "list_name": "Invalides",
+      "code": 470540,
+      "csv_name": "Invalides",
+      "csv_town": "Paris 7e",
+      "code_zone_arret": 71274
+    },
+    {
+      "order": 13,
+      "list_name": "Musée d'Orsay",
+      "code": 45705,
+      "csv_name": "Musée d'Orsay",
+      "csv_town": "Paris 7e",
+      "code_zone_arret": 71269
+    },
+    {
+      "order": 14,
+      "list_name": "Saint-Michel Notre-Dame",
+      "code": 44877,
+      "csv_name": "Saint-Michel Notre-Dame",
+      "csv_town": "Paris 5e",
+      "code_zone_arret": 73620
+    },
+    {
+      "order": 15,
+      "list_name": "Gare d'Austerlitz",
+      "code": 43072,
+      "csv_name": "Gare d'Austerlitz",
+      "csv_town": "Paris 13e",
+      "code_zone_arret": 71135
+    },
+    {
+      "order": 16,
+      "list_name": "Bibliothèque François Mitterrand",
+      "code": 45301,
+      "csv_name": "Bibliothèque François Mitterrand",
+      "csv_town": "Paris 13e",
+      "code_zone_arret": 71572
+    },
+    {
+      "order": 17,
+      "list_name": "Ivry-sur-Seine",
+      "code": 46366,
+      "csv_name": "Ivry-sur-Seine",
+      "csv_town": "Ivry-sur-Seine",
+      "code_zone_arret": 424396
+    },
+    {
+      "order": 18,
+      "list_name": "Vitry-sur-Seine",
+      "code": 46375,
+      "csv_name": "Vitry-sur-Seine",
+      "csv_town": "Vitry-sur-Seine",
+      "code_zone_arret": 70313
+    },
+    {
+      "order": 19,
+      "list_name": "Les Ardoines",
+      "code": 43227,
+      "csv_name": "Les Ardoines",
+      "csv_town": "Vitry-sur-Seine",
+      "code_zone_arret": 70064
+    },
+    {
+      "order": 20,
+      "list_name": "Choisy-le-Roi",
+      "code": 43110,
+      "csv_name": "Choisy-le-Roi",
+      "csv_town": "Choisy-le-Roi",
+      "code_zone_arret": 69852
+    },
+    {
+      "order": 21,
+      "list_name": "Villeneuve-le-Roi",
+      "code": 46307,
+      "csv_name": "Villeneuve-le-Roi",
+      "csv_town": "Villeneuve-le-Roi",
+      "code_zone_arret": 69625
+    },
+    {
+      "order": 22,
+      "list_name": "Ablon",
+      "code": 46387,
+      "csv_name": "Ablon",
+      "csv_town": "Ablon-sur-Seine",
+      "code_zone_arret": 69554
+    },
+    {
+      "order": 23,
+      "list_name": "Athis-Mons",
+      "code": 46395,
+      "csv_name": "Athis-Mons",
+      "csv_town": "Athis-Mons",
+      "code_zone_arret": 63134
+    },
+    {
+      "order": 24,
+      "list_name": "Juvisy",
+      "code": 45739,
+      "csv_name": "Juvisy",
+      "csv_town": "Juvisy-sur-Orge",
+      "code_zone_arret": 478505
+    },
+    {
+      "order": 25,
+      "list_name": "Savigny-sur-Orge",
+      "code": 43192,
+      "csv_name": "Savigny-sur-Orge",
+      "csv_town": "Savigny-sur-Orge",
+      "code_zone_arret": 60987
+    },
+    {
+      "order": 26,
+      "list_name": "Épinay-sur-Orge",
+      "code": 43076,
+      "csv_name": "Épinay-sur-Orge",
+      "csv_town": "Épinay-sur-Orge",
+      "code_zone_arret": 60915
+    },
+    {
+      "order": 27,
+      "list_name": "Sainte-Geneviève-des-Bois",
+      "code": 43188,
+      "csv_name": "Sainte-Geneviève-des-Bois",
+      "csv_town": "Sainte-Geneviève-des-Bois",
+      "code_zone_arret": 60785
+    },
+    {
+      "order": 28,
+      "list_name": "Saint-Michel-sur-Orge",
+      "code": 43202,
+      "csv_name": "Saint-Michel-sur-Orge",
+      "csv_town": "Saint-Michel-sur-Orge",
+      "code_zone_arret": 60536
+    },
+    {
+      "order": 29,
+      "list_name": "Brétigny",
+      "code": 43098,
+      "csv_name": "Brétigny",
+      "csv_town": "Brétigny-sur-Orge",
+      "code_zone_arret": 60247
+    },
+    {
+      "order": 30,
+      "list_name": "Marolles-en-Hurepoix",
+      "code": 43159,
+      "csv_name": "Marolles-en-Hurepoix",
+      "csv_town": "Marolles-en-Hurepoix",
+      "code_zone_arret": 59948
+    },
+    {
+      "order": 31,
+      "list_name": "Bouray",
+      "code": 47905,
+      "csv_name": "Bouray",
+      "csv_town": "Lardy",
+      "code_zone_arret": 59830
+    },
+    {
+      "order": 32,
+      "list_name": "Lardy",
+      "code": 43149,
+      "csv_name": "Lardy",
+      "csv_town": "Lardy",
+      "code_zone_arret": 59761
+    },
+    {
+      "order": 33,
+      "list_name": "Gare de Chamarande",
+      "code": 47927,
+      "csv_name": "Gare de Chamarande",
+      "csv_town": "Chamarande",
+      "code_zone_arret": 59734
+    },
+    {
+      "order": 34,
+      "list_name": "Étréchy",
+      "code": 43081,
+      "csv_name": "Étréchy",
+      "csv_town": "Étréchy",
+      "code_zone_arret": 59678
+    },
+    {
+      "order": 35,
+      "list_name": "Étampes",
+      "code": 43080,
+      "csv_name": "Étampes",
+      "csv_town": "Étampes",
+      "code_zone_arret": 478855
+    },
+    {
+      "order": 36,
+      "list_name": "Saint-Martin d'Étampes",
+      "code": 47115,
+      "csv_name": "Saint-Martin d'Étampes",
+      "csv_town": "Étampes",
+      "code_zone_arret": 59531
+    }
+  ],
+  "Brétigny - Dourdan la Forêt": [
+    {
+      "order": 0,
+      "list_name": "Brétigny",
+      "code": 43098,
+      "csv_name": "Brétigny",
+      "csv_town": "Brétigny-sur-Orge",
+      "code_zone_arret": 60247
+    },
+    {
+      "order": 1,
+      "list_name": "La Norville - Saint-Germain-lès-Arpajon",
+      "code": 47939,
+      "csv_name": "La Norville - Saint-Germain-lès-Arpajon",
+      "csv_town": "La Norville",
+      "code_zone_arret": 60115
+    },
+    {
+      "order": 2,
+      "list_name": "Arpajon",
+      "code": 43068,
+      "csv_name": "Arpajon",
+      "csv_town": "Arpajon",
+      "code_zone_arret": 60072
+    },
+    {
+      "order": 3,
+      "list_name": "Égly",
+      "code": 415484,
+      "csv_name": "Égly",
+      "csv_town": "Égly",
+      "code_zone_arret": 60052
+    },
+    {
+      "order": 4,
+      "list_name": "Breuillet - Bruyères-le-Châtel",
+      "code": 47925,
+      "csv_name": "Breuillet - Bruyères-le-Châtel",
+      "csv_town": "Breuillet",
+      "code_zone_arret": 60028
+    },
+    {
+      "order": 5,
+      "list_name": "Breuillet Village",
+      "code": 43099,
+      "csv_name": "Breuillet Village",
+      "csv_town": "Breuillet",
+      "code_zone_arret": 59940
+    },
+    {
+      "order": 6,
+      "list_name": "Saint-Chéron",
+      "code": 47952,
+      "csv_name": "Saint-Chéron",
+      "csv_town": "Saint-Chéron",
+      "code_zone_arret": 59882
+    },
+    {
+      "order": 7,
+      "list_name": "Sermaise",
+      "code": 47950,
+      "csv_name": "Sermaise",
+      "csv_town": "Sermaise",
+      "code_zone_arret": 59842
+    },
+    {
+      "order": 8,
+      "list_name": "Dourdan",
+      "code": 43121,
+      "csv_name": "Dourdan",
+      "csv_town": "Dourdan",
+      "code_zone_arret": 59836
+    },
+    {
+      "order": 9,
+      "list_name": "Dourdan la Forêt",
+      "code": 47095,
+      "csv_name": "Dourdan la Forêt",
+      "csv_town": "Dourdan",
+      "code_zone_arret": 59843
+    }
+  ]
+}
