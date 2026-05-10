@@ -210,7 +210,8 @@ def filter_disruptions_to_files(api_key=API_KEY):
     except Exception:
         source, detail_erreur = dump_debug()
         if source !="create_html_template":
-            update_display(erreur=detail_erreur)  
+            update_display(erreur=detail_erreur)
+        return  {"disruptions": []},[]
 
 # Utilisation
 
