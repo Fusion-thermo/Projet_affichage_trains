@@ -123,25 +123,23 @@ def parse_disruptions(data: dict) -> list[Disruption]:
     try:
         total = []
         for d in data.get("disruptions", []):
-            periods = parse_dates(d["applicationPeriods"])
-            if is_active_now(periods):
-                disruption = Disruption(
-                    application_periods=periods,
-                    cause=d.get("cause", ""),
-                    severity=d.get("severity", ""),
-                    title=d.get("title", ""),
-                    message=strip_html(d.get("message", "")),
-                    short_message=d.get("shortMessage", ""),
-                    impacted_sections=parse_sections(d.get("impactedSections", [])),
-                )
-                total.append(disruption)
+            disruption = Disruption(
+                application_periods=parse_dates(d["applicationPeriods"]),
+                cause=d.get("cause", ""),
+                severity=d.get("severity", ""),
+                title=d.get("title", ""),
+                message=strip_html(d.get("message", "")),
+                short_message=d.get("shortMessage", ""),
+                impacted_sections=parse_sections(d.get("impactedSections", [])),
+            )
+            total.append(disruption)
         return total
     except Exception:
         source, detail_erreur = dump_debug()
         if source !="create_html_template":
             update_display(erreur=detail_erreur)  
 
-desserte_stations = [60785, 59948, 478505, 71572, 73620]
+desserte_stations = [60785, 59948, 478505, 71572, 73620] #les stations qui m'intéressent
 timer_disruptions = {}
 
 def filter_disruptions_to_files(api_key=API_KEY):
@@ -174,19 +172,26 @@ def filter_disruptions_to_files(api_key=API_KEY):
             
             if target_id in line_ids:
                 #cas spécial des arrêts non desservis : on les note mais sans tout afficher
-                
-                if ("arret" in d.get("title","").lower() or "arrêt" in d.get("title","").lower()) and "non desservi" in d.get("title","") or (("arret" in d.get("shortMessage","").lower() or "arrêt" in d.get("shortMessage","").lower()) and "non desservi" in d.get("shortMessage","")):
-                    
-                    periods = parse_dates(d["applicationPeriods"])
-                    if is_active_now(periods):
-                        for s in sections:
-                            for arret in arrets_restants:
-                                debut = s.get('from').get("id")
-                                fin = s.get('to').get("id")
-                                if is_between(int(debut[debut.rfind(":")+1:]), arret, int(fin[fin.rfind(":")+1:])):
-                                    non_desservi.append(CODE_TO_NAME[arret])
-                                    arrets_restants.remove(arret)
-                    # continue
+                periods = parse_dates(d["applicationPeriods"])
+                if not is_active_now(periods):
+                    continue
+
+                if ("arret" in d.get("title","").lower() or "arrêt" in d.get("title","").lower()) and "non desservi" in d.get("title","").lower() or (("arret" in d.get("shortMessage","").lower() or "arrêt" in d.get("shortMessage","").lower()) and "non desservi" in d.get("shortMessage","").lower()):
+                    # periods = parse_dates(d["applicationPeriods"])
+                    me_concerne=False
+                    for s in sections:
+                        for arret in arrets_restants:
+                            debut = s.get('from').get("id")
+                            fin = s.get('to').get("id")
+                            # print(is_between(int(debut[debut.rfind(":")+1:]), arret, int(fin[fin.rfind(":")+1:])))
+                            if is_between(int(debut[debut.rfind(":")+1:]), arret, int(fin[fin.rfind(":")+1:])):
+                                print("is_between")
+                                non_desservi.append(CODE_TO_NAME[arret])
+                                arrets_restants.remove(arret)
+                                me_concerne+True
+                    if not me_concerne:
+                        continue
+
                 id = d.get("id",'no_id')
                 if id in timer_disruptions.keys():
                     if timer_disruptions[id] > 24*60:
@@ -215,7 +220,7 @@ if __name__ == "__main__":
     data,non_desservi = filter_disruptions_to_files(API_KEY)
 
     disruptions = parse_disruptions(data)
-    print(type(disruptions))
+    # print(type(disruptions))
 
     for dis in disruptions:
         print(f"\n{'='*60}")
@@ -227,6 +232,6 @@ if __name__ == "__main__":
         print(f"Sections  :")
         for sec in dis.impacted_sections:
             direction = "↔" if sec.bidirectional else "→"
-            print(f"  [{sec.line_id}]  {sec.from_id}  {direction}  {sec.to_id}")
+            print(f"  [{sec.line_id}]  {sec.from_name}  {direction}  {sec.to_name}")
     
     print(non_desservi)
