@@ -15,7 +15,7 @@ from heures_debut_fin import PAUSE_DEBUT, PAUSE_FIN
 from clef_api import API_KEY
 
 # --- CONFIGURATION ---
-STOP_POINT_ID = "STIF:StopArea:SP:43188:"
+STOP_POINT_ID = "STIF:StopArea:SP:43188:" #sainte-geneviève-des-bois
 
 
 
@@ -32,6 +32,7 @@ def parse_heure(h_str):
 # --- BOUCLE PRINCIPALE ---
 debut_pause = parse_heure(PAUSE_DEBUT)
 fin_pause   = parse_heure(PAUSE_FIN)
+memoire = {}
 if __name__ == "__main__":
     while True:
         try:
@@ -51,7 +52,7 @@ if __name__ == "__main__":
                 trains = []
                 etat_connexion = f"Erreur inattendue : {e}"
 
-            trains_nord, trains_sud = traitements(trains) 
+            trains_nord, trains_sud, memoire = traitements(trains, memoire) 
             mes_trains_nord = [vars(i) for i in trains_nord]
             mes_trains_sud = [vars(i) for i in trains_sud]
             log_trains(trains)

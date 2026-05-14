@@ -39,7 +39,7 @@ STOP_POINT_ID = "STIF:StopArea:SP:43188:" #sainte geneviève fonctionne
 LINE_ID = "STIF:Line::C01727:" # Identifiant unique du RER C
 
 class Train:
-    def __init__(self, code, destination, arrivee, depart, stopped, retard, numero_train, habituel=False):
+    def __init__(self, code, destination, arrivee, arrivee_initiale, depart, stopped, retard, numero_train, habituel=False):
         self.code_mission = code
         self.destination = destination
         self.arrivee = arrivee
@@ -53,9 +53,9 @@ class Train:
         self.couleur = ""
 
         self.extra = ""
-        self.arrivee_initiale = ""
+        self.arrivee_initiale = arrivee_initiale
+        self.arrivee_prec = arrivee_initiale
         self.nb_decalage = 0
-        self.retard_prec = retard
 
         self.habituel=habituel
 
@@ -102,7 +102,7 @@ def log_trains(train_list):
                 if not is_duplicate:
                     data = train.__dict__.copy()
                     data['hash_id'] = current_hash  # On stocke le hash pour la prochaine lecture
-                    f.write(json.dumps(data) + "\n")
+                    f.write(json.dumps(data, default=str) + "\n")
                     history.append(data)
     except Exception:
         source, detail_erreur = dump_debug()
@@ -160,17 +160,18 @@ def get_prim_schedules(api_key, stop_id):
             
             # Formatage de l'heure pour la lisibilité
             dt_expected = datetime.fromisoformat(expected_arrival_time_str.replace('Z', '+00:00'))
-            dt_paris = dt_expected.astimezone(ZoneInfo("Europe/Paris"))
+            dt_paris_expected = dt_expected.astimezone(ZoneInfo("Europe/Paris"))
             maintenant_paris = datetime.now(ZoneInfo("Europe/Paris"))
-            if dt_paris < maintenant_paris + timedelta(minutes=3):#même en courant on ne l'atteint pas
+            if dt_paris_expected < maintenant_paris + timedelta(minutes=4):#même en courant on ne l'atteint pas
                 continue
-            heure_expected_formatee = dt_paris.strftime("%H:%M")
+            heure_expected_formatee = dt_paris_expected.strftime("%H:%M")
+            heure_expected_initiale = dt_paris_expected
             dt_aimed = datetime.fromisoformat(aimed_departure_time_str.replace('Z', '+00:00'))
-            dt_paris = dt_aimed.astimezone(ZoneInfo("Europe/Paris"))
-            heure_aimed_formatee = dt_paris.strftime("%H:%M")
+            dt_paris_aimed = dt_aimed.astimezone(ZoneInfo("Europe/Paris"))
+            heure_aimed_formatee = dt_paris_aimed.strftime("%H:%M")
 
             # print(f"{code_mission} | {destination:<20} | {heure_expected_formatee} | {heure_aimed_formatee} | Stoppé : {stopped} | {retard}")
-            all_trains.append(Train(code_mission, destination, heure_expected_formatee, heure_aimed_formatee, stopped, retard, numero_train))
+            all_trains.append(Train(code_mission, destination, heure_expected_formatee, heure_expected_initiale, heure_aimed_formatee, stopped, retard, numero_train))
 
         return all_trains
     except Exception:
@@ -201,17 +202,15 @@ couleurs_contrastees = [
 trains_habituels = [("ELBA","07:55"),("ELBA","08:25"),("KNAK","08:04")]
 precision_habitude = 3 #plus ou moins de minutes autour de l'heure prévue
 
-#dico_couleurs = {'GOTA': '#f1c40f', 'BOBA': '#2ecc71', 'ELBA': '#8e44ad', 'DEBO': '#f39c12', 'SARA': '#fd79a8', 'LARA': '#ecf0f1', 'ZARA': '#f1c40f', 'SICK': '#1abc9c', 'DEBA': '#e67e22', 'KNAK': '#badc58', 'BALI': '#9b59b6'}
-
 repertoire_script = os.path.dirname(os.path.abspath(__file__))
 with open(repertoire_script+"/dico_couleurs.txt","r") as fichier:
     dico_couleurs = eval(fichier.read())
 
-
-def traitements(trains):
+def traitements(trains, memoire={}):
     try:
         trains_sud = []
         trains_nord = []
+        old_memoire = memoire.copy()
         memoire = {}
         for train in trains:
             #orientation
@@ -235,8 +234,6 @@ def traitements(trains):
             else:
                 train.couleur="#e74c3c"
             #mémoire des retards
-            old_memoire = memoire.copy()
-            memoire = {}
             if train.key in old_memoire.keys():
                 maintenant = datetime.now()
                 heure_cible = maintenant.replace(
@@ -246,16 +243,17 @@ def traitements(trains):
                     microsecond=0
                     )
                 if heure_cible > maintenant:
-                    if train.retard_prec != train.retard:
-                        train.retard_prec = train.retard
-                        train.nb_decalage +=1
-                        train.retard += " ou plus"
-                        train.extra = f"Heure prévue initiale {train.aarrivee_initiale} décalée {train.nb_decalage} fois."
+                    if train.retard != "onTime":
+                        if train.arrivee_prec + timedelta(minutes=5) < heure_cible.replace(tzinfo=ZoneInfo("Europe/Paris")):
+                            train.arrivee_prec = heure_cible
+                            train.nb_decalage = old_memoire[train.key].nb_decalage + 1
+                            train.extra = f"Heure prévue initiale {train.arrivee_initiale.strftime('%H:%M')} décalée {train.nb_decalage} fois."
                         if train.immobile: train.extra+= " Train à l'arrêt."
+                        train.arrivee = heure_cible.strftime("%H:%M")
                     
                     memoire[train.key] = train
             else:
-                memoire[train.key] = train
+                memoire[train.key] = train 
             #habitude
             for habitude in trains_habituels:
                 d1 = datetime.strptime(train.arrivee, "%H:%M")
@@ -265,19 +263,19 @@ def traitements(trains):
                     break
 
 
-        return trains_nord, trains_sud          
+        return trains_nord, trains_sud, memoire       
     except Exception:
         source, detail_erreur = dump_debug()
         if source !="create_html_template":
             update_display(erreur=detail_erreur)
-        return [],[]  
+        return [],[],{}
 
 
 
 # Lancement
 if __name__ == "__main__":
     trains = get_prim_schedules(API_KEY, STOP_POINT_ID)
-    trains_nord, trains_sud = traitements(trains) 
+    trains_nord, trains_sud, memoire = traitements(trains) 
     for i in trains_nord:
         print(vars(i))
 

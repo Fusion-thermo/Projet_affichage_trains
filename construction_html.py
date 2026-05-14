@@ -96,7 +96,11 @@ def create_html_template(trains_nord=[], trains_sud=[], erreur="", disruptions=[
  
                     mins = minutes_restantes(t['arrivee'])
                     if mins is not None and mins >= 0:
-                        remaining_html = f'<span class="remaining">{format_remaining(mins)}</span>'
+                        if t.get('nb_decalage') > 0 : 
+                            ajouter=" ou plus" 
+                        else:
+                            ajouter=""
+                        remaining_html = f'<span class="remaining">{format_remaining(mins)}{ajouter}</span>'
                     else:
                         remaining_html = '<span class="remaining"></span>'
  

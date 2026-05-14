@@ -48,10 +48,11 @@ def manual_debug():
             if pos != -1:
                 texte = texte[:pos] + "\n        " + infos + "\n" + texte[pos:]
 
-        # Écriture atomique via fichier temporaire
-        tmp_path = OUTPUT_PATH + ".tmp"
-        with open(tmp_path, "w", encoding="utf-8") as f:
-            f.write(texte)
-        os.replace(tmp_path, OUTPUT_PATH)  # Atomique sur la plupart des OS
+        if texte != "":
+            # Écriture atomique via fichier temporaire
+            tmp_path = OUTPUT_PATH + ".tmp"
+            with open(tmp_path, "w", encoding="utf-8") as f:
+                f.write(texte)
+            os.replace(tmp_path, OUTPUT_PATH)  # Atomique sur la plupart des OS
     except Exception as e:
         print(e)

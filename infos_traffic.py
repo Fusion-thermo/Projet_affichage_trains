@@ -185,7 +185,6 @@ def filter_disruptions_to_files(api_key=API_KEY):
                             fin = s.get('to').get("id")
                             # print(is_between(int(debut[debut.rfind(":")+1:]), arret, int(fin[fin.rfind(":")+1:])))
                             if is_between(int(debut[debut.rfind(":")+1:]), arret, int(fin[fin.rfind(":")+1:])):
-                                print("is_between")
                                 non_desservi.append(CODE_TO_NAME[arret])
                                 arrets_restants.remove(arret)
                                 me_concerne+True
