@@ -28,6 +28,13 @@ def manual_debug():
                 old_block = texte[debut:fin]
                 texte = texte.replace(old_block, f'{clock_tag}{now_str}', 1)
 
+        if texte != "":
+            # Écriture atomique via fichier temporaire
+            tmp_path = OUTPUT_PATH + ".tmp"
+            with open(tmp_path, "w", encoding="utf-8") as f:
+                f.write(texte)
+            os.replace(tmp_path, OUTPUT_PATH) 
+
         # Construction du bloc d'erreur (on échappe les caractères HTML dangereux)
         import html as html_module
         exc_safe = html_module.escape(str({
@@ -53,6 +60,6 @@ def manual_debug():
             tmp_path = OUTPUT_PATH + ".tmp"
             with open(tmp_path, "w", encoding="utf-8") as f:
                 f.write(texte)
-            os.replace(tmp_path, OUTPUT_PATH)  # Atomique sur la plupart des OS
+            os.replace(tmp_path, OUTPUT_PATH) 
     except Exception as e:
         print(e)

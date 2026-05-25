@@ -206,10 +206,12 @@ def filter_disruptions_to_files(api_key=API_KEY):
         target_json_output = {"disruptions": target_list}
         non_desservi.sort()
         return target_json_output, non_desservi
+    except requests.exceptions.ConnectionError as e:
+        update_display(erreur="requests.exceptions.ConnectionError infos_traffic")
+        return  {"disruptions": []},[]
     except Exception:
         source, detail_erreur = dump_debug()
-        if source !="create_html_template":
-            update_display(erreur=detail_erreur)
+        update_display(erreur=detail_erreur)
         return  {"disruptions": []},[]
 
 # Utilisation

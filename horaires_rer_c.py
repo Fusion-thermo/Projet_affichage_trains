@@ -37,6 +37,10 @@ STOP_POINT_ID = "STIF:StopPoint:Q:463158:" #FONCTIONNE pour l'arrêt de métro c
 STOP_POINT_ID = "STIF:StopArea:SP:43159:" #FONCTIONNE MAROLLES
 STOP_POINT_ID = "STIF:StopArea:SP:43188:" #sainte geneviève fonctionne
 LINE_ID = "STIF:Line::C01727:" # Identifiant unique du RER C
+trains_habituels = [("ELBA","07:55"),("ELBA","08:25"),("KNAK","08:04")]
+precision_habitude = 3 #plus ou moins de minutes autour de l'heure prévue pour les trains habituels
+duree_trajet = 4 #minutes jusqu'à la gare
+duree_avant_decalage_retard = 5 #en minutes
 
 class Train:
     def __init__(self, code, destination, arrivee, arrivee_initiale, depart, stopped, retard, numero_train, habituel=False):
@@ -162,7 +166,7 @@ def get_prim_schedules(api_key, stop_id):
             dt_expected = datetime.fromisoformat(expected_arrival_time_str.replace('Z', '+00:00'))
             dt_paris_expected = dt_expected.astimezone(ZoneInfo("Europe/Paris"))
             maintenant_paris = datetime.now(ZoneInfo("Europe/Paris"))
-            if dt_paris_expected < maintenant_paris + timedelta(minutes=4):#même en courant on ne l'atteint pas
+            if abs((dt_paris_expected - maintenant_paris).total_seconds()) / 60 < duree_trajet:#même en courant on ne l'atteint pas
                 continue
             heure_expected_formatee = dt_paris_expected.strftime("%H:%M")
             heure_expected_initiale = dt_paris_expected
@@ -174,10 +178,12 @@ def get_prim_schedules(api_key, stop_id):
             all_trains.append(Train(code_mission, destination, heure_expected_formatee, heure_expected_initiale, heure_aimed_formatee, stopped, retard, numero_train))
 
         return all_trains
+    except requests.exceptions.ConnectionError as e:
+        update_display(erreur="requests.exceptions.ConnectionError horaires_trains")
+        return []
     except Exception:
         source, detail_erreur = dump_debug()
-        if source !="create_html_template":
-            update_display(erreur=detail_erreur)
+        update_display(erreur=detail_erreur)
         return []
 
 sud = ['B','E','D']
@@ -198,9 +204,6 @@ couleurs_contrastees = [
     "#ffeaa7",  # Jaune Paille (Doux pour les yeux)
     "#ff7675",  # Rose Corail (Vibrant)
 ]
-
-trains_habituels = [("ELBA","07:55"),("ELBA","08:25"),("KNAK","08:04")]
-precision_habitude = 3 #plus ou moins de minutes autour de l'heure prévue
 
 repertoire_script = os.path.dirname(os.path.abspath(__file__))
 with open(repertoire_script+"/dico_couleurs.txt","r") as fichier:
@@ -244,7 +247,7 @@ def traitements(trains, memoire={}):
                     )
                 if heure_cible > maintenant:
                     if train.retard != "onTime":
-                        if train.arrivee_prec + timedelta(minutes=5) < heure_cible.replace(tzinfo=ZoneInfo("Europe/Paris")):
+                        if abs(heure_cible.replace(tzinfo=ZoneInfo("Europe/Paris")) - train.arrivee_prec).total_seconds()/60 > duree_avant_decalage_retard:
                             train.arrivee_prec = heure_cible
                             train.nb_decalage = old_memoire[train.key].nb_decalage + 1
                             train.extra = f"Heure prévue initiale {train.arrivee_initiale.strftime('%H:%M')} décalée {train.nb_decalage} fois."
