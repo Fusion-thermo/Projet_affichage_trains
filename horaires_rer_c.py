@@ -148,7 +148,10 @@ def get_prim_schedules(api_key, stop_id):
             destination = journey.get('DestinationName', [{}])[0].get('value', 'Inconnue')
             if "Saint-Quentin en Yvelines" in destination:
                 destination="Saint-Quentin en Yvelines"
-            code_mission = journey.get('JourneyNote', [{}])[0].get('value', 'Inconnue')
+            if len(journey.get('JourneyNote', [{}])) != 0:
+                code_mission = journey.get('JourneyNote', [{}])[0].get('value', 'Inconnue')
+            else:
+                code_mission = "NO CODE"
             numero_train = journey.get('VehicleJourneyName', [{}])[0].get('value', 'Inconnue')
             #sens = journey.get('DirectionRef', {}).get('value', 'Inconnue') #Aller ou Retour : pas suffisant pour indiquer la direction
 
