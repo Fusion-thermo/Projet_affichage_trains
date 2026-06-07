@@ -3,3 +3,4 @@ clef_api.py
 debug_*
 train_board.html
 *.log
+system_monitor_*
