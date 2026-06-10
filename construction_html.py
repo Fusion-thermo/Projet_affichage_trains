@@ -134,10 +134,11 @@ def create_html_template(trains_nord=[], trains_sud=[], erreur="", disruptions=[
     <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=1024, initial-scale=1.0, user-scalable=no">
         <meta http-equiv="refresh" content="2">
         <style>
             body {{ 
-                background: #001f3f; color: white; font-family: sans-serif; 
+                background: #001f3f; color: white; font-family: 'Roboto', sans-serif; 
                 margin: 0; padding: 0; width: 1024px; height: 600px; overflow: hidden;
                 display: flex; flex-direction: column;
             }}
@@ -148,7 +149,7 @@ def create_html_template(trains_nord=[], trains_sud=[], erreur="", disruptions=[
                 flex-shrink: 0;
             }}
             .header h1 {{ margin: 0; font-size: 20px; letter-spacing: 2px; color: #ccc; }}
-            .clock {{ font-family: monospace; font-size: 24px; color: #ffcc00; font-weight: bold; }}
+            .clock {{ font-family: 'Roboto Mono', monospace; font-size: 24px; color: #ffcc00; font-weight: bold; }}
  
             .container {{
                 display: flex;
@@ -180,7 +181,7 @@ def create_html_template(trains_nord=[], trains_sud=[], erreur="", disruptions=[
             }}
             .top-line {{ display: flex; align-items: center; gap: 10px; }}
             .dest {{
-                flex: 1; font-size: 20px; font-weight: 600;
+                flex: 1; font-size: 18px; font-weight: 400;
                 text-transform: uppercase; min-width: 0;
                 word-break: break-word; line-height: 1.2;
             }}
@@ -217,7 +218,7 @@ def create_html_template(trains_nord=[], trains_sud=[], erreur="", disruptions=[
                 color: #ff6b6b;
                 font-size: 13px;
                 font-weight: bold;
-                font-family: monospace;
+                font-family: 'Roboto Mono', monospace;
             }}
             .panel-msg {{
                 color: #e8e8e8;
