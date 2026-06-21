@@ -1,7 +1,7 @@
 from datetime import datetime
 import sys
 import os
-# import requests
+import requests
 repertoire_script = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(repertoire_script)
 from heures_debut_fin import PAUSE_DEBUT, PAUSE_FIN
@@ -9,6 +9,37 @@ from gestion_erreurs import dump_debug
 from last_try import manual_debug
 
 MAX_TRAINS_DISPLAY = 6
+
+def obtenir_temperature(ville):
+    try:
+        # 1. Géocodage pour obtenir les coordonnées de la ville
+        url_geo = f"https://geocoding-api.open-meteo.com/v1/search?name={ville}&count=1&language=fr&format=json"
+        reponse_geo = requests.get(url_geo).json()
+
+        if "results" not in reponse_geo or len(reponse_geo["results"]) == 0:
+            return f"Ville '{ville}' introuvable."
+
+        infos = reponse_geo["results"][0]
+        lat, lon = infos["latitude"], infos["longitude"]
+
+
+        # 2. Requête vers les différents modèles météorologiques
+        url_base = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true"
+
+
+        url = f"{url_base}&models=dwd_icon"
+
+        reponse = requests.get(url).json()
+
+        # Extraction de la température spécifique au modèle demandé
+        if "current_weather" in reponse:
+            temp = reponse["current_weather"]["temperature"]
+            return temp
+        return None
+
+    except Exception:
+        dump_debug(source="create_html_template")
+        manual_debug()
 
 
 def couleur_texte_optimale(hex_fond):
@@ -148,8 +179,10 @@ def create_html_template(trains_nord=[], trains_sud=[], erreur="", disruptions=[
                 border-bottom: 2px solid #ffcc00;
                 flex-shrink: 0;
             }}
-            .header h1 {{ margin: 0; font-size: 20px; letter-spacing: 2px; color: #ccc; }}
+            .header-left {{ display: flex; align-items: center; gap: 30px; }}
+            .header h1 {{ margin: 0; font-size: 20px; letter-spacing: 2px; color: #fff; }}
             .clock {{ font-family: 'Roboto Mono', monospace; font-size: 24px; color: #ffcc00; font-weight: bold; }}
+            .temperature {{ font-family: 'Roboto Mono', monospace; font-size: 24px; color: #ffffff; font-weight: bold; }}
  
             .container {{
                 display: flex;
@@ -240,7 +273,10 @@ def create_html_template(trains_nord=[], trains_sud=[], erreur="", disruptions=[
     </head>
     <body>
         <div class="header">
-            <h1>Sainte-Geneviève-des-Bois</h1>
+            <div class="header-left">
+                <h1>Sainte-Geneviève-des-Bois</h1>
+                <div class="temperature">{obtenir_temperature("Sainte-Geneviève-des-Bois")}°C</div>
+            </div>
             <div class="clock">{now_time}</div>
         </div>
         <div class="container">
