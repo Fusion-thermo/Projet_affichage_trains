@@ -14,28 +14,36 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-INTERVAL = 30        # secondes entre chaque mesure
+INTERVAL = 60        # secondes entre chaque mesure
 OUTPUT_DIR = "."     # dossier de sortie des CSV
 
 
 # ──────────────────────────────────────────────
 # Colonnes du CSV
 # ──────────────────────────────────────────────
+# HEADER = (
+#     "heure,"
+#     "CPU(%),"
+#     "CPU_freq(MHz),"
+#     "load_1min,"
+#     "RAM(%),"
+#     "RAM_utilisee(MB),"
+#     "swap(%),"
+#     "disque(%),"
+#     "disque_lu(MB/s),"
+#     "disque_ecrit(MB/s),"
+#     "temp_cpu(C),"
+#     "temp_gpu(C),"
+#     "net_envoye(KB/s),"
+#     "net_recu(KB/s)"
+# )
+
 HEADER = (
     "heure,"
     "CPU(%),"
-    "CPU_freq(MHz),"
-    "load_1min,"
     "RAM(%),"
     "RAM_utilisee(MB),"
-    "swap(%),"
-    "disque(%),"
-    "disque_lu(MB/s),"
-    "disque_ecrit(MB/s),"
-    "temp_cpu(C),"
-    "temp_gpu(C),"
-    "net_envoye(KB/s),"
-    "net_recu(KB/s)"
+    "swap(%)"
 )
 
 
@@ -103,8 +111,8 @@ def collect(elapsed):
 
     # CPU
     cpu_pct   = safe(lambda: psutil.cpu_percent(interval=1), "")
-    cpu_freq  = safe(lambda: round(psutil.cpu_freq().current), "")
-    load_1min = safe(lambda: round(psutil.getloadavg()[0], 2), "")
+    # cpu_freq  = safe(lambda: round(psutil.cpu_freq().current), "")
+    # load_1min = safe(lambda: round(psutil.getloadavg()[0], 2), "")
 
     # RAM
     vm        = psutil.virtual_memory()
@@ -114,37 +122,42 @@ def collect(elapsed):
     # Swap
     swap_pct  = safe(lambda: psutil.swap_memory().percent, "")
 
-    # Disque (partition racine)
-    disk_pct  = safe(lambda: psutil.disk_usage("/").percent, "")
+    # # Disque (partition racine)
+    # disk_pct  = safe(lambda: psutil.disk_usage("/").percent, "")
 
-    # Débit disque (MB/s depuis la dernière mesure)
-    cur_disk = safe(psutil.disk_io_counters)
-    if cur_disk and _prev_disk_io and elapsed > 0:
-        disk_read  = round((cur_disk.read_bytes  - _prev_disk_io.read_bytes)  / elapsed / 1024**2, 2)
-        disk_write = round((cur_disk.write_bytes - _prev_disk_io.write_bytes) / elapsed / 1024**2, 2)
-    else:
-        disk_read = disk_write = ""
-    _prev_disk_io = cur_disk
+    # # Débit disque (MB/s depuis la dernière mesure)
+    # cur_disk = safe(psutil.disk_io_counters)
+    # if cur_disk and _prev_disk_io and elapsed > 0:
+    #     disk_read  = round((cur_disk.read_bytes  - _prev_disk_io.read_bytes)  / elapsed / 1024**2, 2)
+    #     disk_write = round((cur_disk.write_bytes - _prev_disk_io.write_bytes) / elapsed / 1024**2, 2)
+    # else:
+    #     disk_read = disk_write = ""
+    # _prev_disk_io = cur_disk
 
-    # Températures
-    temp_cpu = get_cpu_temp()
-    temp_gpu = get_gpu_temp()
+    # # Températures
+    # temp_cpu = get_cpu_temp()
+    # temp_gpu = get_gpu_temp()
 
-    # Débit réseau (KB/s depuis la dernière mesure)
-    cur_net = safe(psutil.net_io_counters)
-    if cur_net and _prev_net_io and elapsed > 0:
-        net_sent = round((cur_net.bytes_sent - _prev_net_io.bytes_sent) / elapsed / 1024, 1)
-        net_recv = round((cur_net.bytes_recv - _prev_net_io.bytes_recv) / elapsed / 1024, 1)
-    else:
-        net_sent = net_recv = ""
-    _prev_net_io = cur_net
+    # # Débit réseau (KB/s depuis la dernière mesure)
+    # cur_net = safe(psutil.net_io_counters)
+    # if cur_net and _prev_net_io and elapsed > 0:
+    #     net_sent = round((cur_net.bytes_sent - _prev_net_io.bytes_sent) / elapsed / 1024, 1)
+    #     net_recv = round((cur_net.bytes_recv - _prev_net_io.bytes_recv) / elapsed / 1024, 1)
+    # else:
+    #     net_sent = net_recv = ""
+    # _prev_net_io = cur_net
+
+    # return (
+    #     heure, cpu_pct, cpu_freq, load_1min,
+    #     ram_pct, ram_mb, swap_pct,
+    #     disk_pct, disk_read, disk_write,
+    #     temp_cpu, temp_gpu,
+    #     net_sent, net_recv
+    # )
 
     return (
-        heure, cpu_pct, cpu_freq, load_1min,
-        ram_pct, ram_mb, swap_pct,
-        disk_pct, disk_read, disk_write,
-        temp_cpu, temp_gpu,
-        net_sent, net_recv
+        heure, cpu_pct,
+        ram_pct, ram_mb, swap_pct
     )
 
 
